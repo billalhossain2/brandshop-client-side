@@ -89,7 +89,7 @@ const MostViewed = () => {
     <h3 className='font-bold text-3xl text-gray-600 mb-5'>Most Viewed Products</h3>
     <Swiper
       spaceBetween={30}
-      slidesPerView={4}
+      slidesPerView={3}
       centeredSlides={true}
       autoplay={{
         delay: 2000,
