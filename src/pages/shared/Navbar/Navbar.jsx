@@ -5,7 +5,7 @@ import { FaBars } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
 const Navbar = () => {
   const [show, setShow] = useState(false)
-  const handleShow = ()=>setShow(!show)
+  const handleBarsShow = ()=>setShow(!show)
   const navList = (
     <>
       <li>
@@ -41,9 +41,9 @@ const Navbar = () => {
       </ul>
 
       {/* Mobile Menu  */}
-      <div className="md:hidden font-medium text-[18px]">
-        <FaBars onClick={handleShow} className={`${show && 'hidden'} text-4xl text-[#F5921D] border-2 border-solid border-[#F5921D]`}></FaBars>
-        <RxCross1 onClick={handleShow} className={`${!show && 'hidden'} text-4xl text-[#F5921D] border-2 border-solid border-[#F5921D]`}></RxCross1>
+      <div className="font-medium text-[18px] md:hidden">
+        <FaBars onClick={handleBarsShow} className={`${show && 'hidden'} text-4xl text-[#F5921D] border-2 border-solid border-[#F5921D]`}></FaBars>
+        <RxCross1 onClick={handleBarsShow} className={`${!show && 'hidden'} text-4xl text-[#F5921D] border-2 border-solid border-[#F5921D]`}></RxCross1>
       </div>
       {
         show && <ul className={`top-${show ? '[40px]' : '[-500px]'} duration-300 md:hidden absolute right-0 bg-zinc-900 w-full top-10 text-white py-2 pl-5 mobile-menu`}>
