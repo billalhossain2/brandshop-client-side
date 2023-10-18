@@ -29,7 +29,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="flex justify-between items-center px-2 mt-5 relative">
+    <nav className="flex justify-between items-center px-2 mt-5 relative my-10">
       <Link to="/">
       <div className="font-bold text-3xl">
         <span className="text-[#F5921D] me-2">Tech</span>
@@ -46,7 +46,7 @@ const Navbar = () => {
         <RxCross1 onClick={handleBarsShow} className={`${!show && 'hidden'} text-4xl text-[#F5921D] border-2 border-solid border-[#F5921D]`}></RxCross1>
       </div>
       {
-        show && <ul className={`top-${show ? '[40px]' : '[-500px]'} duration-300 md:hidden absolute right-0 bg-zinc-900 w-full top-10 text-white py-2 pl-5 mobile-menu`}>
+        show && <ul className={`top-${show ? '[40px]' : '[-500px]'} duration-300 md:hidden absolute right-0 bg-zinc-900 w-full top-10 text-white py-2 pl-5 mobile-menu z-50`}>
         {navList}
       </ul>
       }

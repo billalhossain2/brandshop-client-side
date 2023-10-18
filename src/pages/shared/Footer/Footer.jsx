@@ -7,11 +7,11 @@ import { BsArrowRightShort } from 'react-icons/bs';
 const Footer = () => {
   return (
     <footer>
-       <div className="max-w-[1240px] mx-auto grid lg:grid-cols-4 md:gap-3 gap-10 md:grid-cols-2 grid-cols-1 px-2">
+       <div className="max-w-[1240px] mx-auto grid lg:grid-cols-4 md:gap-3 gap-10 md:grid-cols-2 grid-cols-1 px-2 py-5">
         {/* Column 1  */}
        <div className="space-y-5">
        <Link to="/">
-      <div className="font-bold md:text-3xl">
+      <div className="font-bold md:text-3xl text-2xl">
         <span className="text-[#F5921D] me-2">Tech</span>
         <span>store</span>
       </div>
