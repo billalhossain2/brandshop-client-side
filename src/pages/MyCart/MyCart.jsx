@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
+import "./MyCart.css"
+import {Link} from "react-router-dom"
 const MyCart = () => {
   // Simulated cart items (you should replace this with your actual cart data)
   const [cartItems, setCartItems] = useState([
@@ -36,7 +38,7 @@ const MyCart = () => {
           </thead>
           <tbody>
             {cartItems.map((item) => (
-              <tr key={item.id}>
+              <tr className='border-b-2 border-solid border-[#f5b11d46]' key={item.id}>
                 <td>{item.image}</td>
                 <td>{item.name}</td>
                 <td>${item.price}</td>
@@ -49,7 +51,9 @@ const MyCart = () => {
                   >
                     <RiDeleteBin2Line></RiDeleteBin2Line>
                   </button>
-                  <button className="text-green-500 hover:text-green-700 text-3xl" onClick={() => console.log('Update', item.id)}><FiEdit></FiEdit></button>
+                  <Link to={`/update-product/${item.id}`}>
+                  <button className="text-[#f5b11d] hover:text-[#f5731d] text-3xl" onClick={() => console.log('Update', item.id)}><FiEdit></FiEdit></button>
+                  </Link>
                 </td>
               </tr>
             ))}

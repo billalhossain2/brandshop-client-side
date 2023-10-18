@@ -1,0 +1,16 @@
+table thead{
+    background: #c96a2b;
+    color:#fff;
+}
+
+table thead tr th{
+    padding:10px 0;
+    padding-left: 5px;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+
+table tr td{
+    padding:10px 0;
+}
