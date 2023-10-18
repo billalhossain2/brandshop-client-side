@@ -1,0 +1,13 @@
+.social-icon:hover{
+    color:black;
+    cursor: pointer;
+}
+.social-icon{
+    font-size: 1.3rem;
+}
+
+.column-title{
+    font-size: 1.2rem;
+    color:#706c6c;
+    font-weight: bolder;
+}

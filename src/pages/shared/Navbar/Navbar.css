@@ -1,0 +1,22 @@
+nav ul li:hover{
+    color:#F5921D;
+    font:bolder;
+}
+
+nav ul li a{
+    display: block;
+}
+
+.active{
+    color:#F5921D;
+    border-radius: 5px;
+}
+
+.mobile-menu li{
+    padding: 10px 0;
+    font-weight: bolder;
+}
+
+.mobile-menu li:not(:last-child){
+    border-bottom: 1px solid rgb(53, 49, 49);
+}
