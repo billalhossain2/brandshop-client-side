@@ -9,6 +9,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import NotFound from "../pages/NotFound/NotFound";
 import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
+import BrandProducts from "../pages/BrandProducts/BrandProducts";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path:"/update-product/:updateId",
         element:<UpdateProduct></UpdateProduct>
+      },
+      {
+        path:"/brand-products",
+        element:<BrandProducts></BrandProducts>
+      },
+      {
+        path:"/product-details",
+        element:<ProductDetails></ProductDetails>
       },
     ]
   },

@@ -65,9 +65,13 @@ const AddProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option value="">Select Brand</option>
-            <option value="Brand A">Brand A</option>
-            <option value="Brand B">Brand B</option>
+            <option disabled value="">Select Brand</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Sony">Sony</option>
+            <option value="Google">Google</option>
+            <option value="Intel">Intel</option>
+            <option value="Microsoft">Microsoft</option>
             {/* Add more options as needed */}
           </select>
         </div>
@@ -83,9 +87,17 @@ const AddProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option value="">Select Product Type</option>
-            <option value="Type A">Type A</option>
-            <option value="Type B">Type B</option>
+            <option disabled value="">Select Product Type</option>
+            <option value="Smartphone">Smartphone</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Television">Television</option>
+            <option value="Fridge">Fridge</option>
+            <option value="Headphone">Headphone</option>
+            <option value="Camera">Camera</option>
+            <option value="Airbad">Airbad</option>
+            <option value="Watch">Watch</option>
+            <option value="Microphone">Microphone</option>
+            <option value="Printer">Printer</option>
             {/* Add more options as needed */}
           </select>
         </div>
