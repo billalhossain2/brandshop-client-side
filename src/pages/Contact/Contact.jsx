@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Contact = () => {
+  useTitle("Contact - Tech Store")
   return (
     <div className="container lg:max-w-[500px] mx-auto p-4 border-[1px] border-solid border-[#f5941d7e] rounded-lg">
       <h1 className="text-3xl font-semibold mb-4">Contact Us</h1>

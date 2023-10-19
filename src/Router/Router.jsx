@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
 import BrandProducts from "../pages/BrandProducts/BrandProducts";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path:"/product-details",
         element:<ProductDetails></ProductDetails>
+      },
+      {
+        path:"/profile",
+        element:<Profile></Profile>
       },
     ]
   },

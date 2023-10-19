@@ -6,6 +6,9 @@ import { RxCross1 } from 'react-icons/rx';
 const Navbar = () => {
   const [show, setShow] = useState(false)
   const handleBarsShow = ()=>setShow(!show)
+  const handleLogout = ()=>{
+    alert('Logout')
+  }
   const navList = (
     <>
       <li>
@@ -22,6 +25,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/my-cart">My Cart</NavLink>
+      </li>
+      <li>
+        <NavLink to="/profile">
+          <img className="w-12 h-12 rounded-full border-solid border-4 border- hover:border-[#F5921D]" src="https://i.ibb.co/Kx3bp73/john-doe.jpg" alt="Profile Image" />
+        </NavLink>
+      </li>
+      <li>
+        <button onClick={handleLogout}>Logout</button>
       </li>
       <li>
         <NavLink to="/login">Login</NavLink>

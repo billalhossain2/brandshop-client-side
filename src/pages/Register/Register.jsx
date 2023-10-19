@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Link} from "react-router-dom"
+import useTitle from '../../hooks/useTitle'
 const Register = () => {
+  useTitle("Register - Tech Store")
   const [formData, setFormData] = useState({name:'', photoUrl:'', email:'', password:'', confirmPassword:''})
 
   const handleChange = (e)=>{

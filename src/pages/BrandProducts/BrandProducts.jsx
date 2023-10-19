@@ -1,6 +1,7 @@
 // ProductPage.js
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
+import useTitle from '../../hooks/useTitle';
 
 const products = [
   {
@@ -33,9 +34,15 @@ const products = [
 ];
 
 const BrandProducts = () => {
+  useTitle("Brand Products - Tech Store")
+  const [brandProducts, setBrandProducts] = useState([])
+  fetch('./brandsProducts.json')
+  .then(res => res.json())
+  .then(data => setBrandProducts(data))
+  .catch(error => console.log(error.message))
   return (
-    <div className="grid grid-cols-3 gap-4 p-6">
-      {products.map((product) => (
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-6">
+      {brandProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

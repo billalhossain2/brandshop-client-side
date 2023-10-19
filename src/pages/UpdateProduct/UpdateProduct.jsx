@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const UpdateProduct = () => {
+  useTitle("Update Product - Tech Store")
   const [product, setProduct] = useState({
     image: '',
     name: '',

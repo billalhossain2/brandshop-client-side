@@ -86,25 +86,10 @@ const MostViewed = () => {
   
   return (
     <div className='my-20'>
-    <h3 className='font-bold text-3xl text-gray-600 mb-5'>Most Viewed Products</h3>
-    <Swiper
-      spaceBetween={30}
-      slidesPerView={3}
-      centeredSlides={true}
-      autoplay={{
-        delay: 2000,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      navigation={true}
-      modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper"
-    >
+    <h3 className='font-bold md:text-3xl text-2xl text-gray-600 mb-5'>Most Viewed Products</h3>
+      <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5'>
       {
         mostViewedProducts?.map(product => (
-          <SwiperSlide className='space-y-3'>
              <div className='border-solid border-gray-300 border-2 hover:border-[#F5921D] h-[350px] p-5 rounded-lg flex flex-col justify-between '>
              <img className='h-[150px] w-full mb-3' src={product.image} alt="" />
              <div className='space-y-2'>
@@ -113,10 +98,9 @@ const MostViewed = () => {
              <p className='text-[#F5921D] text-2xl'>${product.price}</p>
              </div>
              </div>
-          </SwiperSlide>
         ))
       }
-    </Swiper>
+      </div>
   </div>
   )
 }

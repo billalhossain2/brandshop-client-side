@@ -1,7 +1,9 @@
 // ProductDetails.js
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const ProductDetails = () => {
+  useTitle("Product Details - Tech Store")
   const product = {
     id: 1,
     name: "Smart Phone Makes You Cool",

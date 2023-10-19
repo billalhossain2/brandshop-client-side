@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const blogPosts = [
   {
@@ -48,6 +49,7 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  useTitle("Blog - Tech Store")
   const { category } = useParams();
   const filteredPosts = blogPosts.filter((post) => post.category === category);
 

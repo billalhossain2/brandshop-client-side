@@ -3,7 +3,9 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
 import "./MyCart.css"
 import {Link} from "react-router-dom"
+import useTitle from '../../hooks/useTitle';
 const MyCart = () => {
+  useTitle("My Cart - Tech Store")
   // Simulated cart items (you should replace this with your actual cart data)
   const [cartItems, setCartItems] = useState([
     { id: 1, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
