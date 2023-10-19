@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const handleLogout = ()=>{
     signOutUser()
-    .then(result => toast("Logout was successful", {autoClose:2000}))
+    .then(result => toast("Logout was successful", {autoClose:2000, position:'top-center'}))
     .catch(error => console.log(error.message))
   }
   const navList = (
@@ -29,7 +29,7 @@ const Navbar = () => {
         <NavLink to="/contact">Contact</NavLink>
       </li>
      {
-      user && (
+      user ? (
         <>
          <li>
         <NavLink to="/add-product">Add Product</NavLink>
@@ -39,22 +39,22 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/profile">
-          <img className="w-12 h-12 rounded-full border-solid border-4 border- hover:border-[#F5921D]" src="https://i.ibb.co/Kx3bp73/john-doe.jpg" alt="Profile Image" />
+          <img className="w-12 h-12 rounded-full border-solid border-4 border- hover:border-[#F5921D]" src={user?.photoURL} alt="Profile Image" />
         </NavLink>
       </li>
       <li>
         <button onClick={handleLogout}>Logout</button>
       </li>
         </>
-      )
-     }
+      ) : 
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
+     }
     </>
   );
   return (
-    <nav className="flex justify-between items-center px-2 mt-5 relative my-10">
+    <nav className="flex justify-between items-center md:px-20 mt-5 relative my-10">
       <Link to="/">
       <div className="font-bold text-3xl">
         <span className="text-[#F5921D] me-2">Tech</span>

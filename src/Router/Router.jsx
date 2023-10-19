@@ -12,6 +12,7 @@ import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
 import BrandProducts from "../pages/BrandProducts/BrandProducts";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Profile from "../pages/Profile/Profile";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/update-product/:productId",
-        element:<UpdateProduct></UpdateProduct>
+        element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
       },
       {
         path:"/brand-products/:brandName",
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/product-details/:productId",
-        element:<ProductDetails></ProductDetails>
+        element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
       },
       {
         path:"/profile",

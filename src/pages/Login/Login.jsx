@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault()
     loginWithGoogle()
     .then(result => {
-      toast("Login was successful!", {autoClose:2000})
+      toast("Login was successful!", {autoClose:2000, position:'top-left'})
     })
     .catch(error => console.log(error))
   }
