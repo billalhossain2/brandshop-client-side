@@ -4,28 +4,47 @@ import { FiEdit } from 'react-icons/fi';
 import "./MyCart.css"
 import {Link} from "react-router-dom"
 import useTitle from '../../hooks/useTitle';
+import Spinner from '../../components/Spinner';
+import { toast } from 'react-toastify';
 const MyCart = () => {
   useTitle("My Cart - Tech Store")
   // Simulated cart items (you should replace this with your actual cart data)
 
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
     fetch('http://localhost:9000/cart')
     .then(res => res.json())
-    .then(data => setCartItems(data))
+    .then(data => {
+      setCartItems(data)
+      setIsLoading(false)
+    })
     .catch(error => console.log(error))
   }, [])
 
-  const handleRemoveItem = (itemId) => {
-    // Remove the specified item from the cart
-    const updatedCartItems = cartItems.filter((item) => item._id !== itemId);
-    setCartItems(updatedCartItems);
+  const handleRemoveItem = (productId) => {
+    //Remove product from cart
+    fetch(`http://localhost:9000/cart/${productId}`, {method:"DELETE"})
+    .then(res => res.json())
+    .then(result => {
+      //delete from UI
+      const updatedCartItems = cartItems.filter((item) => item._id !== productId);
+      setCartItems(updatedCartItems);
+
+      console.log(result)
+      toast("Successfully deleted from cart", {autoClose:1000})
+    })
+    .catch(error => console.log(error))
   };
 
   return (
+    <>
     <div className="container mx-auto p-4 my-10">
       <h1 className="text-3xl font-semibold mb-4">My Cart</h1>
+      {
+        isLoading && <Spinner></Spinner>
+      }
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
@@ -57,9 +76,6 @@ const MyCart = () => {
                   >
                     <RiDeleteBin2Line></RiDeleteBin2Line>
                   </button>
-                  <Link to={`/update-product/${item.id}`}>
-                  <button className="text-[#f5b11d] hover:text-[#f5731d] text-3xl" onClick={() => console.log('Update', item.id)}><FiEdit></FiEdit></button>
-                  </Link>
                 </td>
               </tr>
             ))}
@@ -67,6 +83,7 @@ const MyCart = () => {
         </table>
       )}
     </div>
+    </>
   );
 };
 
