@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useTitle from '../../hooks/useTitle';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
   useTitle("Add Product - Tech Store")
@@ -22,6 +23,20 @@ const AddProduct = () => {
     e.preventDefault();
     // Add logic to submit the product data
     console.log(product)
+
+    //Add to database
+    fetch('', {
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify({product})
+    })
+    .then(res => res.json())
+    .then(result =>{
+      toast('Successfully added a new product', {autoClose:1000})
+    })
+    .catch(error => console.log(error))
   };
 
   return (

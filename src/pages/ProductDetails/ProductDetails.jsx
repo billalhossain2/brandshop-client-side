@@ -33,7 +33,7 @@ const ProductDetails = () => {
     .then(res => res.json())
     .then(result => {
       if(result.acknowledged){
-        toast("Successfully added to cart")
+        toast("Successfully added to cart", {autoClose:1000})
       }
     })
     .catch(error => console.log(error))

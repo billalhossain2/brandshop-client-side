@@ -5,6 +5,22 @@ import useTitle from '../../hooks/useTitle';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 
+
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import './BrandProducts.css'
+
+
+
 const products = [
   {
     id: 1,
@@ -55,6 +71,31 @@ const BrandProducts = () => {
   }, [])
   return (
     <>
+    {/* Slider starts here  */}
+    <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper mb-32"
+      >
+        {
+          brandProducts?.map(item => (
+            <SwiperSlide className='h-[800px]'>
+              <img className='w-full h-[600px]' src={item.image} alt="Product Image" />
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
+
+      <h3 className='font-bold text-5xl my-5'>Explore {brandProducts[0]?.brand_name} Products</h3>
     {
       isLoading && <Spinner></Spinner>
     }

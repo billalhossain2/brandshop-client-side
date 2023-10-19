@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import useTitle from '../../hooks/useTitle';
 import Spinner from '../../components/Spinner';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 const MyCart = () => {
   useTitle("My Cart - Tech Store")
   // Simulated cart items (you should replace this with your actual cart data)
@@ -24,6 +25,22 @@ const MyCart = () => {
   }, [])
 
   const handleRemoveItem = (productId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+
     //Remove product from cart
     fetch(`http://localhost:9000/cart/${productId}`, {method:"DELETE"})
     .then(res => res.json())
@@ -31,11 +48,10 @@ const MyCart = () => {
       //delete from UI
       const updatedCartItems = cartItems.filter((item) => item._id !== productId);
       setCartItems(updatedCartItems);
-
-      console.log(result)
-      toast("Successfully deleted from cart", {autoClose:1000})
     })
     .catch(error => console.log(error))
+      }
+    })
   };
 
   return (
@@ -76,6 +92,7 @@ const MyCart = () => {
                   >
                     <RiDeleteBin2Line></RiDeleteBin2Line>
                   </button>
+
                 </td>
               </tr>
             ))}
