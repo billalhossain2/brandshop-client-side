@@ -1,7 +1,9 @@
 // ProductPage.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import useTitle from '../../hooks/useTitle';
+import { useParams } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 
 const products = [
   {
@@ -36,16 +38,35 @@ const products = [
 const BrandProducts = () => {
   useTitle("Brand Products - Tech Store")
   const [brandProducts, setBrandProducts] = useState([])
-  fetch('./brandsProducts.json')
+  const [isLoading, setIsLoading] = useState(true)
+  const [isAvailable, setIsAvailable] = useState(false)
+  const {brandName} = useParams();
+  useEffect(()=>{
+  fetch(`http://localhost:9000/brand-products/${brandName}`)
   .then(res => res.json())
-  .then(data => setBrandProducts(data))
+  .then(data => {
+    setBrandProducts(data);
+    setIsLoading(false);
+    if(data.length === 0){
+      setIsAvailable(true)
+    }
+  })
   .catch(error => console.log(error.message))
+  }, [])
   return (
+    <>
+    {
+      isLoading && <Spinner></Spinner>
+    }
+    {
+      isAvailable && <h1 className='text-center font-bold text-2xl'>No Products Available</h1>
+    }
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-6">
       {brandProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
+    </>
   );
 };
 

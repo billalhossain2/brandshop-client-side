@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useTitle from '../../hooks/useTitle';
+import { useParams } from 'react-router-dom';
 
 const UpdateProduct = () => {
   useTitle("Update Product - Tech Store")
+  const {productId} = useParams()
+
   const [product, setProduct] = useState({
     image: '',
     name: '',
@@ -12,6 +15,19 @@ const UpdateProduct = () => {
     description: '',
     rating: '',
   });
+
+  const [updateProduct, setUpdateProduct] = useState();
+  const [isUpdate, setIsUpdate] = useState(false)
+
+  useEffect(()=>{
+    fetch(`http://localhost:9000/brand-products/details/${productId}`)
+    .then(res => res.json())
+    .then(data => {
+      setProduct(data)
+      setIsUpdate(true)
+    })
+    .catch(error => console.log(error))
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,13 +79,19 @@ const UpdateProduct = () => {
           <select
             id="brand"
             name="brand"
-            value={product.brand}
+            defaultValue={product.brand_name}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option value="">Select Brand</option>
-            <option value="Brand A">Brand A</option>
-            <option value="Brand B">Brand B</option>
+            {
+              isUpdate ? <option value={product.brand_name}>{product.brand_name}</option> : <option value="Select Brand">Select Brand</option>
+            }
+            <option value="Apple">Apple</option>
+            <option value="Intel">Intel</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Microsoft">Microsoft</option>
+            <option value="Sony">Sony</option>
+            <option value="Google">Google</option>
             {/* Add more options as needed */}
           </select>
         </div>
@@ -81,13 +103,23 @@ const UpdateProduct = () => {
           <select
             id="productType"
             name="productType"
-            value={product.productType}
+            defaultValue={product.type}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option value="">Select Product Type</option>
-            <option value="Type A">Type A</option>
-            <option value="Type B">Type B</option>
+            {
+              isUpdate ? <option value={product.type}>{product.type}</option> : <option value="Select Brand">Select Product Type</option>
+            }
+            <option value="Smartphone">Smartphone</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Television">Television</option>
+            <option value="Fridge">Fridge</option>
+            <option value="Headphone">Headphone</option>
+            <option value="Camera">Camera</option>
+            <option value="Airbad">Airbad</option>
+            <option value="Watch">Watch</option>
+            <option value="Microphone">Microphone</option>
+            <option value="Printer">Printer</option>
             {/* Add more options as needed */}
           </select>
         </div>

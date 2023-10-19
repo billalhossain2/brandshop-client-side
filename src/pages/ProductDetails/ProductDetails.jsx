@@ -1,21 +1,30 @@
 // ProductDetails.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
+import { useParams } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const ProductDetails = () => {
   useTitle("Product Details - Tech Store")
-  const product = {
-    id: 1,
-    name: "Smart Phone Makes You Cool",
-    description:
-      "This is a sample product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.This is a sample product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.This is a sample product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.This is a sample product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.This is a sample product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    price: 49.99,
-    image: "https://i.ibb.co/nRH44Dn/product-details.jpg",
-    brand: "Samsung",
-    type: "Smartphone",
-    rating: 4.5,
-  };
+  const {productId} = useParams();
+  const [product, setProduct] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(()=>{
+    fetch(`http://localhost:9000/brand-products/details/${productId}`)
+    .then(res => res.json())
+    .then(data => {
+      setProduct(data)
+      setIsLoading(false)
+    })
+    .catch(error => console.log(error))
+  }, [])
+
   return (
+    <>
+    {
+      isLoading && <Spinner></Spinner>
+    }
     <div className="container mx-auto p-4">
       <div className="flex flex-wrap -mx-4">
         <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
@@ -27,10 +36,14 @@ const ProductDetails = () => {
         </div>
         <div className="w-full md:w-1/2 lg:w-2/3 px-4 mb-8">
           <h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
-          <p className=" text-[#F5921D] text-2xl"><span className="font-bold">Price:</span> ${product.price}</p>
+          <p className=" text-[#F5921D] text-2xl"><span className="font-bold">Price:</span>{product.price}</p>
           <p><span className="font-bold">Brand:</span> {product.brand}</p>
           <p><span className="font-bold">Product Type:</span> {product.type}</p>
           <p><span className="font-bold">Rating:</span> {product.rating}</p>
+          <p><span className="font-bold">Availability:</span> {product?.availability}</p>
+          <p><span className="font-bold">Color:</span> {product?.color}</p>
+          <p><span className="font-bold">Warranty:</span> {product?.warranty}</p>
+          <p><span className="font-bold">Shipping:</span> {product?.shipping}</p>
           <p className="text-gray-600 mb-4">{product.description}</p>
           <button className="bg-[#F5921D] text-white px-4 py-2 rounded-md mt-4">
             Add to Cart
@@ -38,6 +51,7 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

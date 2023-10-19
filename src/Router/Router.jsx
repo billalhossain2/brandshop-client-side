@@ -48,15 +48,15 @@ const router = createBrowserRouter([
         element:<Register></Register>
       },
       {
-        path:"/update-product/:updateId",
+        path:"/update-product/:productId",
         element:<UpdateProduct></UpdateProduct>
       },
       {
-        path:"/brand-products",
+        path:"/brand-products/:brandName",
         element:<BrandProducts></BrandProducts>
       },
       {
-        path:"/product-details",
+        path:"/product-details/:productId",
         element:<ProductDetails></ProductDetails>
       },
       {
