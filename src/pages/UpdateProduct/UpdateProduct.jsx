@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useTitle from '../../hooks/useTitle';
 import { useParams } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 const UpdateProduct = () => {
   useTitle("Update Product - Tech Store")
   const {productId} = useParams()
@@ -16,7 +16,6 @@ const UpdateProduct = () => {
     rating: '',
   });
 
-  const [updateProduct, setUpdateProduct] = useState();
   const [isUpdate, setIsUpdate] = useState(false)
 
   useEffect(()=>{
@@ -36,8 +35,22 @@ const UpdateProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic to submit the product data
-    console.log(product)
+    // Add logic to update the product data
+    const {image, name, brand_name, type, price, description, rating} = product;
+      fetch(`http://localhost:9000/brand-products/${productId}`, {
+        method:"PUT",
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify({image, name, brand_name, type, price, description, rating})
+      })
+      .then(res => res.json())
+      .then(result => {
+        if(result.acknowledged){
+          toast("Updated Successfully", {autoClose:2000})
+        }
+      })
+      .catch(error => console.log(error))
   };
 
   return (
