@@ -1,9 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import {Link} from "react-router-dom"
 import useTitle from "../../hooks/useTitle"
+import { UserContext } from "../../contexts/AuthContext"
+import { toast } from "react-toastify"
 const Login = () => {
   useTitle("Login - Tech Store")
+  const {user, loginWithGoogle} = useContext(UserContext);
+
   const [formData, setFormData] = useState({email:'', password:''})
+  const [success, setSuccess] = useState("Login was successful");
 
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.name]:e.target.value})
@@ -15,7 +20,11 @@ const Login = () => {
   }
   const handleLoginWithGoogle = (e)=>{
     e.preventDefault()
-    alert('Login with google')
+    loginWithGoogle()
+    .then(result => {
+      toast("Login was successful!", {autoClose:2000})
+    })
+    .catch(error => console.log(error))
   }
   return (
     <div className="hero min-h-screen bg-[#f5941d27]">
@@ -47,6 +56,7 @@ const Login = () => {
       </form>
     </div>
   </div>
+  <p className="py-5">{success}</p>
 </div>
   )
 }

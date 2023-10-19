@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { FaBars } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
+import { UserContext } from "../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 const Navbar = () => {
   const [show, setShow] = useState(false)
   const handleBarsShow = ()=>setShow(!show)
+
+  const {user, signOutUser} = useContext(UserContext);
+
+
   const handleLogout = ()=>{
-    alert('Logout')
+    signOutUser()
+    .then(result => toast("Logout was successful", {autoClose:2000}))
+    .catch(error => console.log(error.message))
   }
   const navList = (
     <>
@@ -20,7 +28,10 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
-      <li>
+     {
+      user && (
+        <>
+         <li>
         <NavLink to="/add-product">Add Product</NavLink>
       </li>
       <li>
@@ -34,6 +45,9 @@ const Navbar = () => {
       <li>
         <button onClick={handleLogout}>Logout</button>
       </li>
+        </>
+      )
+     }
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
