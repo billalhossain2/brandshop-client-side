@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
 import "./MyCart.css"
@@ -7,17 +7,19 @@ import useTitle from '../../hooks/useTitle';
 const MyCart = () => {
   useTitle("My Cart - Tech Store")
   // Simulated cart items (you should replace this with your actual cart data)
-  const [cartItems, setCartItems] = useState([
-    { id: 1, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
-    { id: 2, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
-    { id: 3, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
-    { id: 4, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
-    { id: 5, image:"Image Here", name: 'Product 1', price: 99.99, brand:"Apple", rating: 4.5 },
-  ]);
+
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:9000/cart')
+    .then(res => res.json())
+    .then(data => setCartItems(data))
+    .catch(error => console.log(error))
+  }, [])
 
   const handleRemoveItem = (itemId) => {
     // Remove the specified item from the cart
-    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+    const updatedCartItems = cartItems.filter((item) => item._id !== itemId);
     setCartItems(updatedCartItems);
   };
 
@@ -41,14 +43,16 @@ const MyCart = () => {
           <tbody>
             {cartItems.map((item) => (
               <tr className='border-b-2 border-solid border-[#f5b11d46]' key={item.id}>
-                <td>{item.image}</td>
+                <td>
+                  <img className='w-12 h-12' src={item.image} alt="Product Image" />
+                </td>
                 <td>{item.name}</td>
-                <td>${item.price}</td>
-                <td>{item.brand}</td>
+                <td>{item.price}</td>
+                <td>{item.brand_name}</td>
                 <td>{item.rating}</td>
                 <td>
                   <button
-                    onClick={() => handleRemoveItem(item.id)}
+                    onClick={() => handleRemoveItem(item._id)}
                     className="text-red-500 hover:text-red-700 me-5 text-3xl"
                   >
                     <RiDeleteBin2Line></RiDeleteBin2Line>
