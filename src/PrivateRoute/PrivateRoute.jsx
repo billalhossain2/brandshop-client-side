@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner';
 
 const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(UserContext);
+
     const location = useLocation();
 
     if(loading){
@@ -12,7 +13,7 @@ const PrivateRoute = ({children}) => {
     }
 
     if(!user){
-        return <Navigate to="/login" replace></Navigate>
+        return <Navigate to="/login" state={{from:location.pathname}} replace></Navigate>
     }
     
     return children;

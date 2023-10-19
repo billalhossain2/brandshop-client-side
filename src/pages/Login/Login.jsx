@@ -1,14 +1,19 @@
 import { useContext, useState } from "react"
-import {Link} from "react-router-dom"
+import {Link, useLocation, useNavigate} from "react-router-dom"
 import useTitle from "../../hooks/useTitle"
 import { UserContext } from "../../contexts/AuthContext"
 import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 const Login = () => {
   useTitle("Login - Tech Store")
-  const {user, loginWithGoogle} = useContext(UserContext);
+  const navigate = useNavigate();
+  const from = useLocation()?.state?.from || "/";
+
+  const {user, loginWithGoogle, signInWithEmailPassword} = useContext(UserContext);
 
   const [formData, setFormData] = useState({email:'', password:''})
   const [success, setSuccess] = useState("Login was successful");
+  const [error, setError] = useState("")
 
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.name]:e.target.value})
@@ -16,13 +21,27 @@ const Login = () => {
 
   const handleLogin = (e)=>{
     e.preventDefault()
-    console.log(formData)
+    const {email, password} = formData;
+
+    //Validate empty field
+    if(!email || !password){
+      return Swal.fire('Both email and password are mandatory!')
+    }
+
+    signInWithEmailPassword(email, password)
+    .then(result => {
+      toast("Login was successful", {autoClose:1000})
+      navigate(from)
+    })
+    .catch(error => setError(error.message))
   }
+
   const handleLoginWithGoogle = (e)=>{
     e.preventDefault()
     loginWithGoogle()
     .then(result => {
-      toast("Login was successful!", {autoClose:2000, position:'top-left'})
+      toast("Login was successful!", {autoClose:1000, position:'top-left'})
+      navigate(from)
     })
     .catch(error => console.log(error))
   }
@@ -53,6 +72,7 @@ const Login = () => {
           <button onClick={handleLoginWithGoogle} className="hover:bg-[#F5921D] px-5 py-2 rounded-lg font-bold hover:text-white border-[1px] border-solid border-[#F5921D] text-[#F5921D]">Login with Google</button>
         </div>
         <p>Don't  have an account? <Link className='hover:underline text-[#F5921D] font-bold' to="/register">Register</Link> </p>
+        <p className="text-red-500 font-bold text-center">{error}</p>
       </form>
     </div>
   </div>

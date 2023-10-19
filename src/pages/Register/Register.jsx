@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
-import {Link} from "react-router-dom"
+import React, { useContext, useState } from 'react'
+import {Link, useNavigate} from "react-router-dom"
 import useTitle from '../../hooks/useTitle'
+import { UserContext } from '../../contexts/AuthContext'
+import Swal from 'sweetalert2'
+import { toast } from 'react-toastify'
 const Register = () => {
   useTitle("Register - Tech Store")
+  const navigate = useNavigate()
+  const {user, signUpWithEmailAndPwd, updateUser, signOutUser} = useContext(UserContext);
   const [formData, setFormData] = useState({name:'', photoUrl:'', email:'', password:'', confirmPassword:''})
+  const [error, setError] = useState("");
 
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.name]:e.target.value})
@@ -11,7 +17,46 @@ const Register = () => {
 
   const handleRegister = (e)=>{
     e.preventDefault();
-    console.log(formData)
+    setError("")
+    const {name, email, password, confirmPassword, photoUrl} = formData;
+
+    //Verify empty fields
+    if(!name || !email || !password || !confirmPassword || !photoUrl){
+      Swal.fire("All fields are required!")
+    }
+
+    //Veryfy password matching
+    if(password !== confirmPassword){
+      return setError("Password doesn't match!")
+    }
+
+    //pwd: Billal76*
+
+    //Validate password
+    if(!(/[a-z]/).test(password)){
+      return setError("Your password should contain at least one lower case letter.")
+    }else if(!(/[A-Z]/).test(password)){
+      return setError("Your password should contain at least one upper case letter.")
+    }else if(!(/[0-9]/).test(password)){
+      return setError("Your password should contain at least one numeric value.")
+    }else if(!(/[@#$%*&]/).test(password)){
+      return setError("Your password should contain at least one special character(@ # $ % & - _).")
+    }else if(password.length < 6){
+      return setError("Your password should be at least 6 character longer")
+    }
+
+    signUpWithEmailAndPwd(email, password)
+    .then(result => {
+      updateUser({displayName:name, phtoURL:photoUrl})
+      .then(result => {
+        toast("Reigister was successful", {autoClose:2000})
+        signOutUser()
+        .then(()=>navigate("/login"))
+        .catch(error => setError(error.message))
+      })
+      .catch(error => setError(error.message))
+    })
+    .catch(error => setError(error.message))
   }
   
   return (
@@ -33,13 +78,13 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Photo Url</span>
           </label>
-          <input onChange={handleChange} type="text" name="photoUrl" placeholder="Photo Url" className="input input-bordered" required />
+          <input onChange={handleChange}  type="text" name="photoUrl" placeholder="Photo Url" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input onChange={handleChange} type="email" name="email" placeholder="email" className="input input-bordered" required />
+          <input onChange={handleChange} required type="email" name="email" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
@@ -57,6 +102,8 @@ const Register = () => {
           <button onClick={handleRegister} className="hover:bg-[#F5921D] px-5 py-2 rounded-lg font-bold hover:text-white border-[1px] border-solid border-[#F5921D] text-[#F5921D] text-[20px]">Register</button>
         </div>
         <p>Already have an account? <Link className='hover:underline text-[#F5921D] font-bold' to="/login">Login</Link> </p>
+        {/* Show Message  */}
+        <p className='text-red-500 font-bold text-center'>{error}</p>
       </form>
     </div>
   </div>
