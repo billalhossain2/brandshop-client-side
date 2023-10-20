@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import useTitle from '../../hooks/useTitle';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import useTitle from "../../hooks/useTitle";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 const UpdateProduct = () => {
-  useTitle("Update Product - Tech Store")
-  const {productId} = useParams()
+  useTitle("Update Product - Tech Store");
+  const { productId } = useParams();
 
   const [product, setProduct] = useState({
-    image: '',
-    name: '',
-    brand: '',
-    productType: '',
-    price: '',
-    description: '',
-    rating: '',
+    image: "",
+    name: "",
+    brand: "",
+    productType: "",
+    price: "",
+    description: "",
+    rating: "",
   });
 
-  const [isUpdate, setIsUpdate] = useState(false)
+  const [isUpdate, setIsUpdate] = useState(false);
 
-  useEffect(()=>{
-    fetch(`http://localhost:9000/brand-products/details/${productId}`)
-    .then(res => res.json())
-    .then(data => {
-      setProduct(data)
-      setIsUpdate(true)
-    })
-    .catch(error => console.log(error))
-  }, [])
+  useEffect(() => {
+    fetch(
+      `https://tech-store-server-one.vercel.app/brand-products/details/${productId}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setIsUpdate(true);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,21 +38,33 @@ const UpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add logic to update the product data
-    const {image, name, brand_name, type, price, description, rating} = product;
-      fetch(`http://localhost:9000/brand-products/${productId}`, {
-        method:"PUT",
-        headers:{
-          'content-type':'application/json'
+    const { image, name, brand_name, type, price, description, rating } =
+      product;
+    fetch(
+      `https://tech-store-server-one.vercel.app/brand-products/${productId}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
         },
-        body:JSON.stringify({image, name, brand_name, type, price, description, rating})
-      })
-      .then(res => res.json())
-      .then(result => {
-        if(result.acknowledged){
-          toast("Updated Successfully", {autoClose:2000})
+        body: JSON.stringify({
+          image,
+          name,
+          brand_name,
+          type,
+          price,
+          description,
+          rating,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          toast("Updated Successfully", { autoClose: 2000 });
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -58,7 +72,10 @@ const UpdateProduct = () => {
       <h2 className="text-2xl font-semibold mb-4">Update Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="image" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="image"
+            className="block text-sm font-medium text-gray-600"
+          >
             Image:
           </label>
           <input
@@ -72,7 +89,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-600"
+          >
             Name:
           </label>
           <input
@@ -86,7 +106,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="brand" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="brand"
+            className="block text-sm font-medium text-gray-600"
+          >
             Select Brand:
           </label>
           <select
@@ -96,9 +119,11 @@ const UpdateProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            {
-              isUpdate ? <option value={product.brand_name}>{product.brand_name}</option> : <option value="Select Brand">Select Brand</option>
-            }
+            {isUpdate ? (
+              <option value={product.brand_name}>{product.brand_name}</option>
+            ) : (
+              <option value="Select Brand">Select Brand</option>
+            )}
             <option value="Apple">Apple</option>
             <option value="Intel">Intel</option>
             <option value="Samsung">Samsung</option>
@@ -110,7 +135,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="productType" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="productType"
+            className="block text-sm font-medium text-gray-600"
+          >
             Product Type:
           </label>
           <select
@@ -120,9 +148,11 @@ const UpdateProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            {
-              isUpdate ? <option value={product.type}>{product.type}</option> : <option value="Select Brand">Select Product Type</option>
-            }
+            {isUpdate ? (
+              <option value={product.type}>{product.type}</option>
+            ) : (
+              <option value="Select Brand">Select Product Type</option>
+            )}
             <option value="Smartphone">Smartphone</option>
             <option value="Laptop">Laptop</option>
             <option value="Television">Television</option>
@@ -138,7 +168,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="price" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="price"
+            className="block text-sm font-medium text-gray-600"
+          >
             Price:
           </label>
           <input
@@ -152,7 +185,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-600"
+          >
             Short Description:
           </label>
           <textarea
@@ -165,7 +201,10 @@ const UpdateProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="rating" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="rating"
+            className="block text-sm font-medium text-gray-600"
+          >
             Rating:
           </label>
           <input

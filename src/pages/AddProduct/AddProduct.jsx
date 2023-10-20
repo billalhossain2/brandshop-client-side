@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react';
-import useTitle from '../../hooks/useTitle';
-import { toast } from 'react-toastify';
-import { UserContext } from '../../contexts/AuthContext';
-import Swal from 'sweetalert2';
+import React, { useContext, useState } from "react";
+import useTitle from "../../hooks/useTitle";
+import { toast } from "react-toastify";
+import { UserContext } from "../../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
-  useTitle("Add Product - Tech Store")
-  const {user} = useContext(UserContext)
+  useTitle("Add Product - Tech Store");
+  const { user } = useContext(UserContext);
   const [product, setProduct] = useState({
-    image: '',
-    name: '',
-    brand_name: '',
-    type: '',
-    price: '',
-    description: '',
-    rating: '',
+    image: "",
+    name: "",
+    brand_name: "",
+    type: "",
+    price: "",
+    description: "",
+    rating: "",
   });
 
   const handleChange = (e) => {
@@ -25,24 +25,33 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add logic to submit the product data
-    console.log(product)
-    const {image, name, brand_name, type, price, description, rating} = product;
-    if(!image || !name || !brand_name || !type || !price || !description || !rating){
-      return Swal.fire("All fields are mandatory!")
+    console.log(product);
+    const { image, name, brand_name, type, price, description, rating } =
+      product;
+    if (
+      !image ||
+      !name ||
+      !brand_name ||
+      !type ||
+      !price ||
+      !description ||
+      !rating
+    ) {
+      return Swal.fire("All fields are mandatory!");
     }
     //Add to database
-    fetch('http://localhost:9000/brand-products', {
-      method:'POST',
-      headers:{
-        'content-type':'application/json'
+    fetch("https://tech-store-server-one.vercel.app/brand-products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      body:JSON.stringify(product)
+      body: JSON.stringify(product),
     })
-    .then(res => res.json())
-    .then(result =>{
-      toast('Successfully added a new product', {autoClose:1000})
-    })
-    .catch(error => console.log(error))
+      .then((res) => res.json())
+      .then((result) => {
+        toast("Successfully added a new product", { autoClose: 1000 });
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -50,7 +59,10 @@ const AddProduct = () => {
       <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="image" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="image"
+            className="block text-sm font-medium text-gray-600"
+          >
             Image:
           </label>
           <input
@@ -64,7 +76,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-600"
+          >
             Name:
           </label>
           <input
@@ -78,7 +93,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="brand_name" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="brand_name"
+            className="block text-sm font-medium text-gray-600"
+          >
             Select Brand:
           </label>
           <select
@@ -88,7 +106,9 @@ const AddProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option disabled value="">Select Brand</option>
+            <option disabled value="">
+              Select Brand
+            </option>
             <option value="Apple">Apple</option>
             <option value="Samsung">Samsung</option>
             <option value="Sony">Sony</option>
@@ -100,7 +120,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="type" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="type"
+            className="block text-sm font-medium text-gray-600"
+          >
             Product Type:
           </label>
           <select
@@ -110,7 +133,9 @@ const AddProduct = () => {
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
-            <option disabled value="">Select Product Type</option>
+            <option disabled value="">
+              Select Product Type
+            </option>
             <option value="Smartphone">Smartphone</option>
             <option value="Laptop">Laptop</option>
             <option value="Television">Television</option>
@@ -126,7 +151,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="price" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="price"
+            className="block text-sm font-medium text-gray-600"
+          >
             Price:
           </label>
           <input
@@ -140,7 +168,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-600"
+          >
             Short Description:
           </label>
           <textarea
@@ -153,7 +184,10 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="rating" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="rating"
+            className="block text-sm font-medium text-gray-600"
+          >
             Rating:
           </label>
           <input

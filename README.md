@@ -1,7 +1,7 @@
 # Introduction
 Welcome to the Tech Store website! This project is a website that offers a wide range of tech products, implemented with features like CRUD operations using MongoDB, Firebase-based authentication, and a modern user interface created with React, Tailwind CSS, DaisyUI, and React Router DOM.
 
-#### Live Link: Tech Store Live
+#### Live Link: https://tech-store-c80b8.web.app/
 
 # Features
 * __User Authentication:__ Users can sign up and log in to access the Tech Store features.
