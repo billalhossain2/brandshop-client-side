@@ -12,7 +12,7 @@ const Login = () => {
   const {user, loginWithGoogle, signInWithEmailPassword} = useContext(UserContext);
 
   const [formData, setFormData] = useState({email:'', password:''})
-  const [success, setSuccess] = useState("Login was successful");
+  const [success, setSuccess] = useState();
   const [error, setError] = useState("")
 
   const handleChange = (e)=>{
@@ -46,23 +46,23 @@ const Login = () => {
     .catch(error => console.log(error))
   }
   return (
-    <div className="hero min-h-screen bg-[#f5941d27]">
+    <div className="hero min-h-screen">
   <div className="hero-content flex-col lg:flex-row">
     <div className="text-center lg:text-left">
       <img className='w-full' src="https://i.ibb.co/PcQJfK1/login-illustration.png" alt="" />
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
       <form className="card-body border-[1px] border-solid border-[#f5941d8e] rounded-lg">
       <h3 className='text-3xl font-bold text-center'>Login</h3>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span>Email</span>
           </label>
           <input onChange={handleChange} type="email" name="email" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span>Password</span>
           </label>
           <input onChange={handleChange} type="password" name="password" placeholder="password" className="input input-bordered" required />
         </div>

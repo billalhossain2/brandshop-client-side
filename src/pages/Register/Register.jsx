@@ -60,41 +60,41 @@ const Register = () => {
   }
   
   return (
-  <div className="hero bg-[#f5941d27] py-3 mb-20">
+  <div className="hero py-3 mb-20">
   <div className="hero-content flex-col lg:flex-row">
     <div className="text-center lg:text-left">
       <img className='w-full' src="https://i.ibb.co/gSpQNq2/singup-illustration.png" alt="" />
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
       <form className="card-body border-[1px] border-solid border-[#f5941d8e] rounded-lg">
       <h3 className='text-3xl font-bold text-center'>Register</h3>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span>Name</span>
           </label>
           <input onChange={handleChange} type="text" name="name" placeholder="Name" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Photo Url</span>
+            <span>Photo Url</span>
           </label>
           <input onChange={handleChange}  type="text" name="photoUrl" placeholder="Photo Url" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span>Email</span>
           </label>
           <input onChange={handleChange} required type="email" name="email" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span>Password</span>
           </label>
           <input onChange={handleChange} type="password" name="password" placeholder="password" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Confirm Password</span>
+            <span>Confirm Password</span>
           </label>
           <input onChange={handleChange} type="password" name="confirmPassword" placeholder="confirm password" className="input input-bordered" required />
         </div>
