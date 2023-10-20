@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
       }</h2>
       <h2 className="mt-2"><span className='me-2 font-bold'>Brand:</span>{product.brand_name}</h2>
       </div>
-      <div className={`flex gap-3 position overflow-hidden relative duration-300 ${isHovered ? 'bottom-0' : 'bottom-[-500px]'}`}>
+      <div className={`flex gap-3 position overflow-hidden relative duration-300`}>
       <Link to={`/product-details/${product._id}`}>
       <button className="hover:bg-[#F5921D] border-[1px] border-solid border-[#F5921D] text-[#F5921D] hover:text-white font-bold duration-300 px-4 py-2 rounded-md mt-4">Details</button>
       </Link>
