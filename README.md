@@ -10,7 +10,7 @@ Welcome to the Tech Store website! This project is a website that offers a wide 
 
 * __Product Details:__ Users can view product details.
 
-* __Product Details:__ Users can add product to cart.
+* __Add To Cart:__ Users can add product to cart.
 
 * __Delete From Cart:__ Users can delete product from cart.
 
