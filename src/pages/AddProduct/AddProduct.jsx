@@ -55,7 +55,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto p-4 bg-white shadow-md rounded-lg mb-5 border-solid border-[1px] border-[#f5941d7e]">
+    <div className="md:w-1/2 mx-auto p-4 shadow-md rounded-lg mb-5 border-solid border-[1px] border-[#f5941d7e]">
       <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

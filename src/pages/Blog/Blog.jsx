@@ -58,7 +58,7 @@ const Blog = () => {
       <h1 className="text-3xl font-semibold mb-4">Blog</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {blogPosts.map((post) => (
-            <div key={post.id} className="bg-white p-4 shadow-md rounded-lg flex flex-col justify-between border-2 border-transparent  hover:border-2 hover:border-solid hover:border-[#F5921D]">
+            <div key={post.id} className="p-4 shadow-md rounded-lg flex flex-col justify-between border-2 border-gray-300  hover:border-2 hover:border-solid hover:border-[#F5921D]">
               <div>
               <img className='h-[200px]' src={post.image} alt="" />
               <h2 className="text-lg font-semibold">{post.title}</h2>

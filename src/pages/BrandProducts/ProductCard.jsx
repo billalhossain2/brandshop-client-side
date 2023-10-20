@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
     };
   return (
     <motion.div
-      className={`bg-white shadow-lg rounded-md p-4 m-4 border-2 flex flex-col justify-between overflow-hidden ${isHovered && 'border-2 border-solid border-[#F5921D]'}`}
+      className={`shadow-lg rounded-md p-4 m-4 border-2 flex flex-col justify-between overflow-hidden ${isHovered && 'border-2 border-solid border-[#F5921D]'}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onHoverStart={handleHoverStart}

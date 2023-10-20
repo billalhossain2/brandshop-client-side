@@ -65,7 +65,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="flex justify-between items-center md:px-20 mt-5 relative my-10">
+    <nav className="flex justify-between items-center md:px-20 mt-5 relative my-10 py-10">
       <Link to="/">
       <div className="font-bold text-3xl">
         <span className="text-[#F5921D] me-2">Tech</span>
