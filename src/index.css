@@ -3,7 +3,21 @@
 @tailwind utilities;
 
 /* Night mode styles  */
-.night-mode, .night-mode form input, select, textarea{
+.night-mode{
     background: #000;
     color:#fff;
 }
+
+.night-mode input{
+    background: #000;
+    color:#fff;
+}
+
+.night-mode select{
+    background: black;
+}
+
+.night-mode textarea{
+    background: black;
+}
+

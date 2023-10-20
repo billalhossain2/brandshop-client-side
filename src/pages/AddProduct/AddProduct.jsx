@@ -3,7 +3,7 @@ import useTitle from "../../hooks/useTitle";
 import { toast } from "react-toastify";
 import { UserContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
-
+import "./AddProduct.css"
 const AddProduct = () => {
   useTitle("Add Product - Tech Store");
   const { user } = useContext(UserContext);
@@ -57,7 +57,7 @@ const AddProduct = () => {
   return (
     <div className="md:w-1/2 mx-auto p-4 shadow-md rounded-lg mb-5 border-solid border-[1px] border-[#f5941d7e]">
       <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="night-theme" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="image"
