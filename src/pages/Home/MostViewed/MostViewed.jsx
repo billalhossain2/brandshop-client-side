@@ -90,7 +90,7 @@ const MostViewed = () => {
       <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5'>
       {
         mostViewedProducts?.map(product => (
-             <div className='border-solid border-gray-300 border-2 hover:border-[#F5921D] h-[350px] p-5 rounded-lg flex flex-col justify-between '>
+             <div key={product.id} className='border-solid border-gray-300 border-2 hover:border-[#F5921D] h-[350px] p-5 rounded-lg flex flex-col justify-between '>
              <img className='h-[150px] w-full mb-3' src={product.image} alt="" />
              <div className='space-y-2'>
              <p>{product.category}</p>

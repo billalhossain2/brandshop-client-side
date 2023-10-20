@@ -1,15 +1,19 @@
 import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import DarkModeToggle from "react-dark-mode-toggle";
 import "./Navbar.css";
 import { FaBars } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
 import { UserContext } from "../../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { ThemeContext } from "../../../contexts/ThemeContextProvider";
 const Navbar = () => {
   const [show, setShow] = useState(false)
   const handleBarsShow = ()=>setShow(!show)
 
   const {user, signOutUser} = useContext(UserContext);
+  const {isDarkMode, setIsDarkMode} = useContext(ThemeContext)
+  console.log(isDarkMode)
 
 
   const handleLogout = ()=>{
@@ -51,6 +55,13 @@ const Navbar = () => {
         <NavLink to="/login">Login</NavLink>
       </li>
      }
+     <li>
+     <DarkModeToggle
+      onChange={setIsDarkMode}
+      checked={isDarkMode}
+      size={80}
+    />
+     </li>
     </>
   );
   return (

@@ -61,8 +61,8 @@ const BrandProducts = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper mb-32"
       >
-        {addImages?.map((img) => (
-          <SwiperSlide className="h-[800px]">
+        {addImages?.map((img, index) => (
+          <SwiperSlide key={index} className="h-[800px]">
             <img className="w-full h-full" src={img} alt="Product Image" />
           </SwiperSlide>
         ))}
@@ -79,7 +79,7 @@ const BrandProducts = () => {
       )}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-1">
         {brandProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </>

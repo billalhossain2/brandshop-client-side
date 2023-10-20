@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
       <h2 className="font-semibold mt-2">{product.brand}</h2>
       <p className="font-bold text-[#F5921D] mt-2">{product.price}</p>
       <h2 className="mt-2 flex gap-1">{
-        Array.from({length:parseInt(product.rating)}).map(()=><AiOutlineStar className='text-[#F5921D] font-bold'></AiOutlineStar>)
+        Array.from({length:parseInt(product.rating)}).map((elem, index)=><AiOutlineStar key={index} className='text-[#F5921D] font-bold'></AiOutlineStar>)
       }</h2>
       <h2 className="mt-2"><span className='me-2 font-bold'>Brand:</span>{product.brand_name}</h2>
       </div>

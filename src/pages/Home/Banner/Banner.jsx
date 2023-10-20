@@ -65,7 +65,7 @@ const Banner = () => {
       className="mySwiper mb-32"
     >
       {bannerData?.map((item) => (
-        <SwiperSlide>
+        <SwiperSlide key={item.id}>
           <div className="min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse lg:px-20">
               <img
