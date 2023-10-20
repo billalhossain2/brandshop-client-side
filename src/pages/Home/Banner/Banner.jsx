@@ -69,7 +69,7 @@ const Banner = () => {
           <div className="min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse lg:px-20">
               <img
-                className="max-w-sm rounded-lg"
+                className="lg:max-w-sm md:max-w-[200px] max-w-[100px] rounded-lg"
                 src={item.image}
               />
               <div className="lg:w-[50%] w-full md:h-auto">

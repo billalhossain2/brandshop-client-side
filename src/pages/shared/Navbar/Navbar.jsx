@@ -39,7 +39,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/profile">
-          <img className="w-12 h-12 rounded-full border-solid border-4 border- hover:border-[#F5921D]" src={user?.photoURL} alt="Profile Image" />
+          <img title={user?.displayName} className="w-12 h-12 rounded-full border-solid border-4 border- hover:border-[#F5921D]" src={user?.photoURL} alt="Profile Image" />
         </NavLink>
       </li>
       <li>

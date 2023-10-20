@@ -21,6 +21,7 @@ import './BrandProducts.css'
 
 const BrandProducts = () => {
   useTitle("Brand Products - Tech Store")
+  const addImages = ["https://i.ibb.co/gV1Ldpg/add3.png", "https://i.ibb.co/tKFbkwt/add4.png", "https://i.ibb.co/JmWTh6d/add5.png", "https://i.ibb.co/nkCp5sm/add6.png", "https://i.ibb.co/X3F9yQt/add-one.jpg"]
   const [brandProducts, setBrandProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [isAvailable, setIsAvailable] = useState(false)
@@ -55,11 +56,9 @@ const BrandProducts = () => {
         className="mySwiper mb-32"
       >
         {
-          brandProducts?.map(item => (
+          addImages?.map(img => (
             <SwiperSlide className='h-[800px]'>
-              <div className='w-full h-full flex flex-col items-center justify-center'>
-              <img className='w-[50%] h-[60%]' src={item.image} alt="Product Image" />
-              </div>
+              <img className='w-full h-full' src={img} alt="Product Image" />
             </SwiperSlide>
           ))
         }
