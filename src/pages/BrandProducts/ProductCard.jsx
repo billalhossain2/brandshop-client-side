@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {Link} from "react-router-dom"
+import {AiOutlineStar} from "react-icons/ai"
 const ProductCard = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -20,7 +21,7 @@ const ProductCard = ({ product }) => {
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
       whileHover={{
-        scale: 1.2,
+        scale: 1.1,
         transition: { duration: 0.5 },
       }}
       transition={{ duration: 0.5 }}
@@ -32,11 +33,13 @@ const ProductCard = ({ product }) => {
         <span className='w-[25%] bg-slate-500 h-[1px]'></span>
       </div>
       <div>
-      <h2 className="text-2xl font-semibold mt-2">{product.name}</h2>
-      <h2 className="text-xl font-semibold mt-2">{product.brand}</h2>
-      <p className="text-xl font-bold text-[#F5921D] mt-2">{product.price}</p>
-      <h2 className="text-xl mt-2"><span className='me-2 font-bold'>Rating:</span>{product.rating}</h2>
-      <h2 className="text-xl mt-2"><span className='me-2 font-bold'>Brand:</span>{product.brand_name}</h2>
+      <h2 className="font-bold mt-2">{product.name}</h2>
+      <h2 className="font-semibold mt-2">{product.brand}</h2>
+      <p className="font-bold text-[#F5921D] mt-2">{product.price}</p>
+      <h2 className="mt-2 flex gap-1">{
+        Array.from({length:parseInt(product.rating)}).map(()=><AiOutlineStar className='text-[#F5921D] font-bold'></AiOutlineStar>)
+      }</h2>
+      <h2 className="mt-2"><span className='me-2 font-bold'>Brand:</span>{product.brand_name}</h2>
       </div>
       <div className={`flex gap-3 position overflow-hidden relative duration-300 ${isHovered ? 'bottom-0' : 'bottom-[-500px]'}`}>
       <Link to={`/product-details/${product._id}`}>

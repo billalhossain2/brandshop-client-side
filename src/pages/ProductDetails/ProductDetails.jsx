@@ -1,12 +1,14 @@
 // ProductDetails.js
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
 import { useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { toast } from "react-toastify";
+import { UserContext } from "../../contexts/AuthContext";
 
 const ProductDetails = () => {
   useTitle("Product Details - Tech Store")
+  const {user} = useContext(UserContext)
   const {productId} = useParams();
   const [product, setProduct] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -23,12 +25,13 @@ const ProductDetails = () => {
 
   const handleAddToCart = ()=>{
     const {image, name, brand_name, type, price, rating, description} = product;
-    fetch('http://localhost:9000/cart', {
+    const displayName = user?.displayName;
+    fetch(`http://localhost:9000/cart`, {
       method:"POST",
       headers:{
         'content-type':'application/json'
       },
-      body:JSON.stringify({image, name, brand_name, type, price, rating, description})
+      body:JSON.stringify({image, name, displayName, brand_name, type, price, rating, description})
     })
     .then(res => res.json())
     .then(result => {

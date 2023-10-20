@@ -47,7 +47,7 @@ const Register = () => {
 
     signUpWithEmailAndPwd(email, password)
     .then(result => {
-      updateUser({displayName:name, phtoURL:photoUrl})
+      updateUser({displayName:name, photoURL:photoUrl})
       .then(result => {
         toast("Reigister was successful", {autoClose:2000})
         signOutUser()

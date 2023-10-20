@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useTitle from '../../hooks/useTitle';
 import { toast } from 'react-toastify';
+import { UserContext } from '../../contexts/AuthContext';
+import Swal from 'sweetalert2';
 
 const AddProduct = () => {
   useTitle("Add Product - Tech Store")
+  const {user} = useContext(UserContext)
   const [product, setProduct] = useState({
     image: '',
     name: '',
-    brand: '',
-    productType: '',
+    brand_name: '',
+    type: '',
     price: '',
     description: '',
     rating: '',
@@ -23,14 +26,17 @@ const AddProduct = () => {
     e.preventDefault();
     // Add logic to submit the product data
     console.log(product)
-
+    const {image, name, brand_name, type, price, description, rating} = product;
+    if(!image || !name || !brand_name || !type || !price || !description || !rating){
+      return Swal.fire("All fields are mandatory!")
+    }
     //Add to database
-    fetch('', {
+    fetch('http://localhost:9000/brand-products', {
       method:'POST',
       headers:{
         'content-type':'application/json'
       },
-      body:JSON.stringify({product})
+      body:JSON.stringify(product)
     })
     .then(res => res.json())
     .then(result =>{
@@ -72,13 +78,13 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="brand" className="block text-sm font-medium text-gray-600">
+          <label htmlFor="brand_name" className="block text-sm font-medium text-gray-600">
             Select Brand:
           </label>
           <select
-            id="brand"
-            name="brand"
-            value={product.brand}
+            id="brand_name"
+            name="brand_name"
+            value={product.brand_name}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >
@@ -94,13 +100,13 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="productType" className="block text-sm font-medium text-gray-600">
+          <label htmlFor="type" className="block text-sm font-medium text-gray-600">
             Product Type:
           </label>
           <select
-            id="productType"
-            name="productType"
-            value={product.productType}
+            id="type"
+            name="type"
+            value={product.type}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-indigo-300"
           >

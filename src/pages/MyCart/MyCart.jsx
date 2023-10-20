@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
 import "./MyCart.css"
@@ -7,15 +7,18 @@ import useTitle from '../../hooks/useTitle';
 import Spinner from '../../components/Spinner';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { UserContext } from '../../contexts/AuthContext';
 const MyCart = () => {
   useTitle("My Cart - Tech Store")
+  const {user} = useContext(UserContext)
   // Simulated cart items (you should replace this with your actual cart data)
 
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
-    fetch('http://localhost:9000/cart')
+    const displayName = user?.displayName;
+    fetch(`http://localhost:9000/cart/${displayName}`)
     .then(res => res.json())
     .then(data => {
       setCartItems(data)

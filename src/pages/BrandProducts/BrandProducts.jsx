@@ -19,38 +19,6 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import './BrandProducts.css'
 
-
-
-const products = [
-  {
-    id: 1,
-    image: 'https://i.ibb.co/sKT0p7W/wireless-headphone.jpg',
-    name: 'Here is the product name',
-    brand: 'Apple',
-    type: 'Smartphone',
-    price: 29.56,
-    Rating: 3.5,
-  },
-  {
-    id: 2,
-    image: 'https://i.ibb.co/sKT0p7W/wireless-headphone.jpg',
-    name: 'Here is the product name',
-    brand: 'Apple',
-    type: 'Smartphone',
-    price: 29.56,
-    Rating: 3.5,
-  },
-  {
-    id: 3,
-    image: 'https://i.ibb.co/sKT0p7W/wireless-headphone.jpg',
-    name: 'Here is the product name',
-    brand: 'Apple',
-    type: 'Smartphone',
-    price: 29.56,
-    Rating: 3.5,
-  },
-];
-
 const BrandProducts = () => {
   useTitle("Brand Products - Tech Store")
   const [brandProducts, setBrandProducts] = useState([])
@@ -89,7 +57,9 @@ const BrandProducts = () => {
         {
           brandProducts?.map(item => (
             <SwiperSlide className='h-[800px]'>
-              <img className='w-full h-[600px]' src={item.image} alt="Product Image" />
+              <div className='w-full h-full flex flex-col items-center justify-center'>
+              <img className='w-[50%] h-[60%]' src={item.image} alt="Product Image" />
+              </div>
             </SwiperSlide>
           ))
         }
@@ -102,7 +72,7 @@ const BrandProducts = () => {
     {
       isAvailable && <h1 className='text-center font-bold text-2xl'>No Products Available</h1>
     }
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 p-6">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-1">
       {brandProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
